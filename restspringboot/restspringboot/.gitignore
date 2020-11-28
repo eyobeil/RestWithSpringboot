@@ -1,5 +1,13 @@
 HELP.md
 target/
+/target/
+/.springBeans
+/.project
+/.settings/
+/.gradle/
+/build/
+/.jar
+
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
