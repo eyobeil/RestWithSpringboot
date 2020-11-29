@@ -2,6 +2,7 @@ package com.cognizant.restspringboot.exception.handler;
 
 import com.cognizant.restspringboot.exception.DivideByZeroException;
 import com.cognizant.restspringboot.exception.ExceptionResponse;
+import com.cognizant.restspringboot.exception.ResourceNotFoundException;
 import com.cognizant.restspringboot.exception.UnsupportedMathException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,5 +41,14 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
                 request.getDescription(false)
         );
         return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public final ResponseEntity<ExceptionResponse>  handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest request){
+        ExceptionResponse exceptionResponse= new ExceptionResponse(new Date(),
+                ex.getMessage(),
+                request.getDescription(false)
+        );
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
     }
 }
